@@ -52,8 +52,8 @@ export function Window({options, currIndex, sIndex = 0, eIndex = 8}) {
 		});
 	}
 
-	// window is not at beginning or end of options, highlight is fixed at the
-	// middle index of the window
+	// window is not at beginning or end of options, fix highlight at the middle
+	// index of the window
 	return win.map((opt, index) => {
 		if (index === 4) {
 			return <Opt highlight={true} opt={opt} key={index} />;
@@ -81,13 +81,18 @@ export function MenuBuilder({options, handleChoose, setMenu}) {
 			return;
 		}
 
+		// start
 		if (index + 1 <= 3) {
 			s = 0;
 			e = 8;
+
+			// end
 		} else if (index + 1 >= options.length - 4) {
 			s = options.length - 9;
 			e = options.length - 1;
-		} else if (e !== options.length) {
+
+			// middle
+		} else {
 			s = index + 1 - 4;
 			e = index + 1 + 4;
 		}
